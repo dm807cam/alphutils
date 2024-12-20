@@ -1,0 +1,24 @@
+Type: Package
+Package: alphutils
+Title: Utilities for Alephium
+Version: 0.0.1
+Authors@R: c(
+    person("Dennis", "Mayk", , "dm807@cantab.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6762-2291"))
+  )
+Description: A bunch of utlity functions to retrieve, modify and analyse Alephium related data.
+License: MIT + file LICENSE
+URL: https://github.com/dm807cam/aleputils
+BugReports: https://github.com/dm807cam/aleputils/issues
+Depends:
+    R (>= 3.6.0)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    checkmate (>= 2.3.2),
+    data.table (>= 1.16.4),
+    httr (>= 1.4.7),
+    random (>= 0.2.6)
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
