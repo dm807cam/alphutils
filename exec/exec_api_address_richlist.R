@@ -1,7 +1,7 @@
 pkgload::load_all()
 
 utc_time <- utc_time()
-dt <- api_address_richlist(min_balance = 10000L)
+dt <- api_address_richlist(min_balance = 1L)
 dt[, datetime := utc_time]
 
 path <- fs::path(fs::path_home(),
