@@ -1,4 +1,3 @@
-
 #' @title Fetch rich list
 #'
 #' @description
@@ -14,11 +13,10 @@
 #' @export
 #' @return **[data.table]**: Rich list
 #' @md
-api_address_richlist <- function(
-                         min_balance = 1,
-                         endpoint = explorer_endpoint_select(),
-                         req_timeout = 300,
-                         req_sleep = 1) {
+api_address_richlist <- function(min_balance = 1,
+                                 endpoint = explorer_endpoint_select(),
+                                 req_timeout = 300,
+                                 req_sleep = 1) {
   checkmate::assert_numeric(
     min_balance,
     lower = 0,
@@ -48,8 +46,10 @@ api_address_richlist <- function(
   while (search_pages) {
     message("page: ", page)
 
-    url <- file.path(endpoint,
-                     paste0("tokens/holders/alph?page=", page, "&limit=100"))
+    url <- file.path(
+      endpoint,
+      paste0("tokens/holders/alph?page=", page, "&limit=100")
+    )
 
     resp <- api_GET_with_retry(url = url, req_timeout = req_timeout)
 
@@ -66,7 +66,7 @@ api_address_richlist <- function(
     resp_dt_list[[page]] <- resp_dt[balance >= min_balance, ]
 
     if (min(resp_dt$balance) < min_balance) {
-      search_pages = FALSE
+      search_pages <- FALSE
     } else {
       page <- page + 1
     }
@@ -92,8 +92,8 @@ api_address_richlist <- function(
 #' @return **[double]**: Number of locked $ALPH
 #' @md
 api_address_locked_balance <- function(address,
-                               endpoint = explorer_endpoint_select(),
-                               req_timeout = 300) {
+                                       endpoint = explorer_endpoint_select(),
+                                       req_timeout = 300) {
   checkmate::assert_character(
     address,
     any.missing = FALSE,

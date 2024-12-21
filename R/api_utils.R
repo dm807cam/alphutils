@@ -1,4 +1,3 @@
-
 #' @title GET request
 #'
 #' @param url **[character]**: URL to the API endpoint
@@ -7,9 +6,10 @@
 #' @md
 api_GET <- function(url, req_timeout) {
   checkmate::assert_character(url,
-                              any.missing = FALSE,
-                              len = 1,
-                              null.ok = FALSE)
+    any.missing = FALSE,
+    len = 1,
+    null.ok = FALSE
+  )
   checkmate::assert_integerish(
     req_timeout,
     lower = 1,
@@ -47,12 +47,13 @@ api_GET_with_retry <- function(url, req_timeout, max_retries = 5) {
         if (rtry <= max_retries) {
           rtry <<- rtry + 1
           warning("Issue fetching from ",
-                  url,
-                  " Retry: ",
-                  rtry,
-                  " of ",
-                  max_retries,
-                  immediate. = TRUE)
+            url,
+            " Retry: ",
+            rtry,
+            " of ",
+            max_retries,
+            immediate. = TRUE
+          )
           Sys.sleep(10 * rtry)
         } else {
           stop("Persistent issues fetching from ", url, " after ", max_retries, "attempts.", immediate. = TRUE)

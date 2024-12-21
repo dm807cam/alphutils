@@ -1,4 +1,3 @@
-
 #' @title Convert Pi to ALPH
 #'
 #' @param pi **[double]**: Amount of Pi converted to $ALPH
@@ -81,14 +80,14 @@ true_random <- function(n = 1, min = 1, max = 100, max_retries = 5) {
       error = function(e) {
         rtry <- rtry + 1
         warning("Issue fetching random.org. Retry: ",
-                rtry,
-                " of ",
-                max_retries,
-                immediate. = TRUE)
+          rtry,
+          " of ",
+          max_retries,
+          immediate. = TRUE
+        )
         Sys.sleep(60 * rtry)
       }
     )
   }
   return(resp)
 }
-
