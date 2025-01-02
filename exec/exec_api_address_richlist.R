@@ -15,4 +15,4 @@ file_path = fs::path(path,
                      as.numeric(utc_time),
                      ext = "csv")
 
-write.csv(dt, file = file_path)
+data.table::fwrite(x = dt, file = file_path, row.names = FALSE)

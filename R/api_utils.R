@@ -36,6 +36,26 @@ api_GET <- function(url, req_timeout) {
 #' @return **[list]**: API response content
 #' @md
 api_GET_with_retry <- function(url, req_timeout, max_retries = 5) {
+  checkmate::assert_character(url,
+    any.missing = FALSE,
+    len = 1,
+    null.ok = FALSE
+  )
+  checkmate::assert_integerish(
+    req_timeout,
+    lower = 1,
+    any.missing = FALSE,
+    len = 1,
+    null.ok = FALSE
+  )
+  checkmate::assert_integerish(
+    max_retries,
+    lower = 0,
+    any.missing = FALSE,
+    len = 1,
+    null.ok = FALSE
+  )
+
   rtry <- 0
   while (rtry <= max_retries) {
     tryCatch(
